@@ -1,0 +1,32 @@
+version: '3'
+services:
+  web:
+    container_name: apiserver
+    build:
+        context: .
+        dockerfile: ./TvMazeScraper.App/Dockerfile
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment:
+      ConnectionStrings__Db: Server=db;Database=tvmazescraper;Uid=webserver;Pwd=changeme2;
+      ASPNETCORE_ENVIRONMENT: Development
+    links:
+      - "mssql:database"
+    networks:
+      - tvmazescraper
+    depends_on:
+      - mssql
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: vK8CBND%VefYJRkB!kp!
+    networks:
+      - tvmazescraper
+networks:
+  tvmazescraper:    
+    
+  
