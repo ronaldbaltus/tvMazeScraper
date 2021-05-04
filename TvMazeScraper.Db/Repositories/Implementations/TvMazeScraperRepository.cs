@@ -45,12 +45,7 @@ namespace TvMazeScraper.Db.Repositories.Implementations
         public async Task AddTvShow(TvShow tvShow)
         {
             _dbContext.TvShows.Add(tvShow);
-
-            using var transaction = _dbContext.Database.BeginTransaction();
-
-            _dbContext.SaveChanges();
-
-            await transaction.CommitAsync();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
