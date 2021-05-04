@@ -10,7 +10,7 @@ services:
       - "5000:80"
       - "5001:443"
     environment:
-      ConnectionStrings__Db: Server=db;Database=tvmazescraper;Uid=webserver;Pwd=changeme2;
+      ConnectionStrings__MsSql: "Server=mssql;Database=tvmazescraper;User Id=sa;Password=vK8CBND%VefYJRkB!kp!;MultipleActiveResultSets=True"
       ASPNETCORE_ENVIRONMENT: Development
     links:
       - "mssql:database"
